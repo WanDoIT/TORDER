@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class JoinDAO {
 
 	//접근 제한자가 붙은 멤버 변수로 만들어줌
-	private String url = MainClass.url;
-	private String uid = MainClass.uid; //계정
-	private String upw = MainClass.upw; //비밀번호
+	private String url = MainClass.URL;
+	private String uid = MainClass.UID; //계정
+	private String upw = MainClass.UPW; //비밀번호
 
 	//insert 메서드화
 	public int insertEx(String name, String phonenumber) {

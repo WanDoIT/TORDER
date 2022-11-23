@@ -11,10 +11,9 @@ import java.util.Scanner;
 import project.OrderList;
 
 public class OrderListDAO {
-	private String url2 = MainClass.URL2;
-	private String uid2 = MainClass.UID2;
-	private String upw2 = MainClass.UPW2;
-	
+	private String url = MainClass.URL;
+	private String uid = MainClass.UID; //계정
+	private String upw = MainClass.UPW; //비밀번호
 	public int insert(String order_no,String phone_number ) {
 		int result = 0;
 		Scanner scan = new Scanner(System.in);
@@ -26,7 +25,7 @@ public class OrderListDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//connection
-			conn = DriverManager.getConnection(url2 , uid2 , upw2);
+			conn = DriverManager.getConnection(url , uid , upw);
 			//statement 객체
 			pstmt = conn.prepareStatement(sql);
 			//3. ?값 세팅 - 첫번째부터 1번 순서 (setString, setInt, setDate, setTimestmp)
@@ -66,7 +65,7 @@ public class OrderListDAO {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
 				//conn
-				conn=DriverManager.getConnection(url2, uid2, upw2 );
+				conn=DriverManager.getConnection(url, uid, upw );
 				
 				//stmt
 				pstmt = conn.prepareStatement(sql);

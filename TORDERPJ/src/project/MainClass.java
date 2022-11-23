@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class MainClass {
 	
-	public static final String url = "jdbc:oracle:thin:@172.30.1.18:1521:xe";
-	public static final String uid = "JORDER";
-	public static final String upw = "1234";
+	public static final String URL = "jdbc:oracle:thin:@172.30.1.18:1521:xe";
+	public static final String UID = "JORDER";
+	public static final String UPW = "1234";
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

@@ -7,14 +7,14 @@ import java.sql.PreparedStatement;
 
 
 public class MenuUpdate {
+	private String url = MainClass.URL;
+	private String uid = MainClass.UID; //계정
+	private String upw = MainClass.UPW; //비밀번호
 
 		public int priceUpdate(String name, int price) {
 
 			int result = 0;
 		
-		String url = "jdbc:oracle:thin:@172.30.1.18:1521:xe"; //주소
-		String uid = "JORDER"; //계정
-		String upw = "1234"; //비밀번호
 		
 		String sql = "update menu set price = ? where name = ?";
 		
