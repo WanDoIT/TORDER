@@ -1,18 +1,17 @@
 package project;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Main;
-
 public class JoinDAO {
 
 	//접근 제한자가 붙은 멤버 변수로 만들어줌
-	private String url = Main.url;
-	private String uid = Main.uid; //계정
-	private String upw = Main.upw; //비밀번호
+	private String url = MainClass.url;
+	private String uid = MainClass.uid; //계정
+	private String upw = MainClass.upw; //비밀번호
 
 	//insert 메서드화
 	public int insertEx(String name, String phonenumber) {

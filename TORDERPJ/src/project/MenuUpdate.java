@@ -1,5 +1,6 @@
 package project;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ public class MenuUpdate {
 
 			int result = 0;
 		
-		String url = "jdbc:oracle:thin:@localhost:1521:xe"; //주소
+		String url = "jdbc:oracle:thin:@172.30.1.18:1521:xe"; //주소
 		String uid = "JORDER"; //계정
 		String upw = "1234"; //비밀번호
 		

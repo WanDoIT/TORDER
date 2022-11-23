@@ -1,5 +1,6 @@
 package project;
 
+
 public class JoinVO {
 	
 	//특별한 알고리즘을 가진 클래스가 아니라, 조회한 데이터를 저장할 클래스
