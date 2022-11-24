@@ -113,46 +113,15 @@ public class OrderListDAO {
 		
 	public void tablenum(int tablenum) {
 		OrderListDAO orderlist = new OrderListDAO();
-		switch (tablenum) {
-		case 1: {
-			ArrayList<OrderList> list = orderlist.selectEx(1);
+		if(tablenum < 6) {
+			ArrayList<OrderList> list = orderlist.selectEx(tablenum);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}
-			break;
+		} else {
+			System.out.println("테이블 번호가 없습니다.");
 		}
-		case 2: {
-			ArrayList<OrderList> list = orderlist.selectEx(2);
-			for(OrderList a : list) {
-				System.out.println(a.toString());
-			}
-			break;
-		}
-		case 3: {
-			ArrayList<OrderList> list = orderlist.selectEx(3);
-			for(OrderList a : list) {
-				System.out.println(a.toString());
-			}
-			break;
-		}
-		case 4: {
-			ArrayList<OrderList> list = orderlist.selectEx(4);
-			for(OrderList a : list) {
-				System.out.println(a.toString());
-			}
-			break;
-		}
-		case 5: {
-			ArrayList<OrderList> list = orderlist.selectEx(5);
-			for(OrderList a : list) {
-				System.out.println(a.toString());
-			}
-			break;
-		}
-		default:
-			System.out.println("테이블 번호를 잘못 입력 했습니다.");
-			break;
-		}
+		
 	}
 
 }
