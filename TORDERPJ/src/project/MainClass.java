@@ -18,6 +18,8 @@ public class MainClass {
 		JoinDAO joinDAO = new JoinDAO();
 		OrderListDAO orderlist = new OrderListDAO();
 		
+		System.out.print("테이블 번호 입력>");
+		int tablenum = scan.nextInt();
 		while(true) {
 
 			try {
@@ -57,8 +59,7 @@ public class MainClass {
 					break;
 					
 				case "4":
-					System.out.println("테이블 번호를 선택해주세요.");
-					int tablenum = scan.nextInt();
+					System.out.println(tablenum+"번 테이블 주문 내역");
 					orderlist.tablenum(tablenum);
 					
 					
