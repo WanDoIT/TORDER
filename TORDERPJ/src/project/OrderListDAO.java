@@ -11,6 +11,7 @@ import java.util.Scanner;
 import project.OrderList;
 
 public class OrderListDAO {
+
 	private String url2 = MainClass.URL;
 	private String uid2 = MainClass.UID;
 	private String upw2 = MainClass.UPW;
@@ -153,5 +154,5 @@ public class OrderListDAO {
 			break;
 		}
 	}
-	
+
 }
