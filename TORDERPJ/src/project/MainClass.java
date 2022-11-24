@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 public class MainClass {
 	
-	public static final String url = "jdbc:oracle:thin:@172.30.1.18:1521:xe";
-	public static final String uid = "JORDER";
-	public static final String upw = "1234";
+	public static final String URL = "jdbc:oracle:thin:@172.30.1.18:1521:xe";
+	public static final String UID = "JORDER";
+	public static final String UPW = "1234";
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		JoinDAO joinDAO = new JoinDAO();
-		
+		OrderListDAO orderlist = new OrderListDAO();
 		
 		while(true) {
 
@@ -25,7 +25,7 @@ public class MainClass {
 				System.out.println("[1. 가입 2. 메뉴 3. 주문 4. 주문내역 확인 5. 관리자 모드]");
 				String menu = scan.next();
 
-				switch (menu) {
+				switch (menu.trim()) {
 
 				case "1":
 
@@ -57,6 +57,11 @@ public class MainClass {
 					break;
 					
 				case "4":
+					System.out.println("테이블 번호를 선택해주세요.");
+					String tablenum = scan.next();
+					orderlist.tablenum(tablenum);
+					
+					
 					break;
 					
 				case "5":

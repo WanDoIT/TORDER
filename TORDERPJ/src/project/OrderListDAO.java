@@ -11,9 +11,9 @@ import java.util.Scanner;
 import project.OrderList;
 
 public class OrderListDAO {
-	private String url2 = MainClass.URL2;
-	private String uid2 = MainClass.UID2;
-	private String upw2 = MainClass.UPW2;
+	private String url2 = MainClass.URL;
+	private String uid2 = MainClass.UID;
+	private String upw2 = MainClass.UPW;
 	
 	public int insert(String order_no,String phone_number ) {
 		int result = 0;
@@ -53,10 +53,10 @@ public class OrderListDAO {
 		return result;
 	}
 	//조회메서드
-		public ArrayList<OrderList> selectEx() {
+		public ArrayList<OrderList> selectEx(String num) {
 			ArrayList<OrderList> list = new ArrayList<>();
 			
-			String sql = "select * from order_list";
+			String sql = "select * from order_list where ?";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null; //select 결과를 반환받을 객체
@@ -72,7 +72,7 @@ public class OrderListDAO {
 				pstmt = conn.prepareStatement(sql);
 				
 				//?값에 대한 처리
-				
+				pstmt.setString(1, num);
 				
 				//sql 실행 (select의 실행)
 				rs = pstmt.executeQuery();
@@ -102,6 +102,49 @@ public class OrderListDAO {
 			
 			return list;
 		}
-	
+		
+	public void tablenum(String tablenum) {
+		OrderListDAO orderlist = new OrderListDAO();
+		switch (tablenum.trim()) {
+		case "1": {
+			ArrayList<OrderList> list = orderlist.selectEx("1");
+			for(OrderList a : list) {
+				System.out.println(a.toString());
+			}
+			break;
+		}
+		case "2": {
+			ArrayList<OrderList> list = orderlist.selectEx("2");
+			for(OrderList a : list) {
+				System.out.println(a.toString());
+			}
+			break;
+		}
+		case "3": {
+			ArrayList<OrderList> list = orderlist.selectEx("3");
+			for(OrderList a : list) {
+				System.out.println(a.toString());
+			}
+			break;
+		}
+		case "4": {
+			ArrayList<OrderList> list = orderlist.selectEx("4");
+			for(OrderList a : list) {
+				System.out.println(a.toString());
+			}
+			break;
+		}
+		case "5": {
+			ArrayList<OrderList> list = orderlist.selectEx("5");
+			for(OrderList a : list) {
+				System.out.println(a.toString());
+			}
+			break;
+		}
+		default:
+			System.out.println("테이블 번호를 잘못 입력 했습니다.");
+			break;
+		}
+	}
 	
 }
