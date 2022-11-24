@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class MainClass {
-	
+
 	public static final String url = "jdbc:oracle:thin:@172.30.1.18:1521:xe";
 	public static final String uid = "JORDER";
 	public static final String upw = "1234";
@@ -16,8 +17,8 @@ public class MainClass {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		JoinDAO joinDAO = new JoinDAO();
-		
-		
+
+
 		while(true) {
 
 			try {
@@ -31,34 +32,84 @@ public class MainClass {
 
 					System.out.print("이름>");
 					String name = scan.next();
-					
-					System.out.print("핸드폰 번호>");
+					//이름 유효성 검사
+					boolean name_check = Pattern.matches("^[가-힣]*$", name);
+					while(!name_check) {
+						 
+						if(Pattern.matches("^[가-힣]*$", name)) {
+							break;
+						} else { 
+							System.out.println("한글로 입력하세요");
+							System.out.print("이름> ");
+							name = scan.next();
+						}
+						}
+							
+					System.out.print("핸드폰 번호> ");
 					String phonenumber = scan.next();
 					
+					//핸드폰 번호 유효성 검사
+					boolean firstNum = false;
+					boolean checkNum = false;
+					boolean len = false;
+					final int PHONENUM_LEN = 11;
+					char[] num = phonenumber.toCharArray();
+					
+					while(true) {
+						String fristNum = "010";
+						for(int i = 0; i < num.length; ++i) {
+							num[0] = '0';
+							num[1] = '1';
+							num[2] = '0';
+							
+							firstNum = true;
+						}
+						
+						if(phonenumber.length() == PHONENUM_LEN) {
+							len = true;
+						}
+						
+						for(int j = 0; j < phonenumber.length(); ++j) {
+							char ch = phonenumber.charAt(j);
+							if(ch >= '0' && ch <= '9') {
+								checkNum = true;
+							}
+						}
+						
+						if(firstNum && checkNum && len) {
+							System.out.println("알맞은 핸드폰 번호 형식입니다.");
+							break;
+							
+						} else {
+							System.out.println("알맞지 않은 핸드폰 형식입니다.");
+							System.out.print("핸드폰 번호>");
+							phonenumber = scan.next();
+						}
+					}
 					
 					int result = joinDAO.insertEx(name, phonenumber);
-					
+
 					if(result == 1) {
 						System.out.println("정상 입력되었습니다.");
 						System.out.println("이제 인생 맥주의 소식과 쿠폰을 받을 수 있습니다!");
 					} else {
 						System.out.println("입력 오류 발생");
 					}
-					
+
 					break;
-					
+
 				case "2":
-				
-					
-					
+
+
+
 					break;
-					
+
 				case "3":
 					break;
-					
+
 				case "4":
 					break;
-					
+
 				case "5":
 					System.out.println("관리자 모드로 들어갑니다");
 					System.out.println("아이디와 비밀번호를 입력하세요");
@@ -71,51 +122,52 @@ public class MainClass {
 						System.out.println("관리자 메뉴를 선택하세요");
 						System.out.println("1. 일자별 집계 2. 전체 고객 내역 확인 3. 메뉴 변경");
 						int managermenuselect = scan.nextInt();
-						
+
 						switch (managermenuselect) {
-						
+
 						case 1:
 							System.out.println("1. 일자별 집계 내역 확인");
 							//동민이꺼 연결해서 넣기
-							
+
 							break;
-							
+
 						case 2: 
 							System.out.println("2. 전체 고객 내역 확인");
 							ArrayList<JoinVO> list1 = joinDAO.selectEx();
 							for(JoinVO vo : list1) {
 								System.out.println(vo.toString());
 							}
-							
+							break;
+
 						case 3:
 							System.out.println("3. 메뉴 변경");
 							//Scanner scan1 = new Scanner(System.in);
 							MenuUpdate menuupdate = new MenuUpdate();
-							
+
 							System.out.print("변경할 메뉴 이름 입력: ");
 							//메뉴 보여주기
 							String name2 = scan.next();
 							System.out.println();
 							System.out.print("변경 금액 입력:");
 							int price = scan.nextInt();
-							
+
 							int result2 = menuupdate.priceUpdate(name2, price);
 							if(result2 ==1) {
 								System.out.println("성공");
 							} else {
 								System.out.println("실패");
-								
+
 							}
-							
+
 						default:
 							break;
 						}
-						
+
 					} else {
 						System.out.println("로그인 실패");
 					}
-					
-					
+
+
 					break;
 
 				default:
