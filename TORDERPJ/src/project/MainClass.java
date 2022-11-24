@@ -58,7 +58,7 @@ public class MainClass {
 					
 				case "4":
 					System.out.println("테이블 번호를 선택해주세요.");
-					String tablenum = scan.next();
+					int tablenum = scan.nextInt();
 					orderlist.tablenum(tablenum);
 					
 					
@@ -91,7 +91,7 @@ public class MainClass {
 							for(JoinVO vo : list1) {
 								System.out.println(vo.toString());
 							}
-							
+							break;
 						case 3:
 							System.out.println("3. 메뉴 변경");
 							//Scanner scan1 = new Scanner(System.in);
@@ -111,7 +111,7 @@ public class MainClass {
 								System.out.println("실패");
 								
 							}
-							
+							break;
 						default:
 							break;
 						}

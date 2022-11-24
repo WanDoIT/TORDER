@@ -53,10 +53,15 @@ public class OrderListDAO {
 		return result;
 	}
 	//조회메서드
-		public ArrayList<OrderList> selectEx(String num) {
+		public ArrayList<OrderList> selectEx(int num) {
 			ArrayList<OrderList> list = new ArrayList<>();
 			
-			String sql = "select * from order_list where ?";
+			String sql = "SELECT SUM(M.PRICE * ORDERCOUNT) PRICE, ORDERCOUNT, O.NAME, TABLE_NO  \r\n"
+					+ "FROM ORDERINFO O\r\n"
+					+ "LEFT OUTER JOIN MENU M\r\n"
+					+ "ON O.NAME = M.NAME\r\n"
+					+ "WHERE TABLE_NO = ?\r\n"
+					+ "GROUP BY TABLE_NO , O.NAME , ORDERCOUNT";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null; //select 결과를 반환받을 객체
@@ -72,19 +77,21 @@ public class OrderListDAO {
 				pstmt = conn.prepareStatement(sql);
 				
 				//?값에 대한 처리
-				pstmt.setString(1, num);
+				pstmt.setInt(1, num);
 				
 				//sql 실행 (select의 실행)
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) { //다음 row가 있다면 true 
 					//한 행에 대한 처리
-					int OrderNo = rs.getInt("ORDER_NO");
-					String OrderDate = rs.getString("ORDER_DATE");
+					int price = rs.getInt("PRICE");
+					int ordercount = rs.getInt("ORDERCOUNT");
+					String name = rs.getString("NAME");
+					int tableno = rs.getInt("TABLE_NO");
 					
 					
 					//
-					OrderList ordervo = new OrderList(OrderNo, OrderDate);
+					OrderList ordervo = new OrderList(price, ordercount,name,tableno);
 					list.add(ordervo);
 				}
 				
@@ -103,39 +110,39 @@ public class OrderListDAO {
 			return list;
 		}
 		
-	public void tablenum(String tablenum) {
+	public void tablenum(int tablenum) {
 		OrderListDAO orderlist = new OrderListDAO();
-		switch (tablenum.trim()) {
-		case "1": {
-			ArrayList<OrderList> list = orderlist.selectEx("1");
+		switch (tablenum) {
+		case 1: {
+			ArrayList<OrderList> list = orderlist.selectEx(1);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}
 			break;
 		}
-		case "2": {
-			ArrayList<OrderList> list = orderlist.selectEx("2");
+		case 2: {
+			ArrayList<OrderList> list = orderlist.selectEx(2);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}
 			break;
 		}
-		case "3": {
-			ArrayList<OrderList> list = orderlist.selectEx("3");
+		case 3: {
+			ArrayList<OrderList> list = orderlist.selectEx(3);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}
 			break;
 		}
-		case "4": {
-			ArrayList<OrderList> list = orderlist.selectEx("4");
+		case 4: {
+			ArrayList<OrderList> list = orderlist.selectEx(4);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}
 			break;
 		}
-		case "5": {
-			ArrayList<OrderList> list = orderlist.selectEx("5");
+		case 5: {
+			ArrayList<OrderList> list = orderlist.selectEx(5);
 			for(OrderList a : list) {
 				System.out.println(a.toString());
 			}

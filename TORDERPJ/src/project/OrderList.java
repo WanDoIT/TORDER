@@ -1,32 +1,49 @@
 package project;
 
 public class OrderList {
-	private int OrderNO;
-	private String OrderDate;
-	public OrderList(int orderNO, String orderDate) {
+	private int Price;
+	private int Ordercount;
+	private String Name;
+	private int Tableno;
+	public OrderList(int price, int ordercount, String name, int tableno) {
 		super();
-		OrderNO = orderNO;
-		OrderDate = orderDate;
+		Price = price;
+		Ordercount = ordercount;
+		Name = name;
+		Tableno = tableno;
 	}
 	public OrderList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getOrderNO() {
-		return OrderNO;
+	public int getPrice() {
+		return Price;
 	}
-	public void setOrderNO(int orderNO) {
-		OrderNO = orderNO;
+	public void setPrice(int price) {
+		Price = price;
 	}
-	public String getOrderDate() {
-		return OrderDate;
+	public int getOrdercount() {
+		return Ordercount;
 	}
-	public void setOrderDate(String orderDate) {
-		OrderDate = orderDate;
+	public void setOrdercount(int ordercount) {
+		Ordercount = ordercount;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public int getTableno() {
+		return Tableno;
+	}
+	public void setTableno(int tableno) {
+		Tableno = tableno;
 	}
 	@Override
 	public String toString() {
-		return "OrderList [OrderNO=" + OrderNO + ", OrderDate=" + OrderDate + "]";
+		return "OrderList [Price=" + Price + ", Ordercount=" + Ordercount + ", Name=" + Name + ", Tableno=" + Tableno
+				+ "]";
 	}
 	
 	
